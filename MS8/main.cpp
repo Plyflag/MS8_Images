@@ -13,10 +13,12 @@ int main(int argc, char *argv[])
     monImage.Chargement("power.bmp");
     cout << monImage.Largeur() << endl;
     cout << monImage.Hauteur() << endl;
-    Coordonnee c={50,50};
+    Coordonnee c={80,150};
     Pixel rouge = {0, 0, 255};
-    //monImage.Colorie(c, 50, 60, rouge);
-
+    Pixel black = {0, 0, 0};
+    monImage.Colorie(c, 60, 60, black);
+    monImage.Detoure(0, 50, 100, 0, rouge);
+    monImage.Recadre();
 
     monImage.Sauvegarde("testpower.bmp");
     WinExec("mspaint.exe testpower.bmp" , 1) ;
