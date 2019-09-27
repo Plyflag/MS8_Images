@@ -22,6 +22,7 @@ void ChangeCouleurSegment(Coordonnee coord,int taille,int epaisseur,Pixel couleu
 //segment='a' 'b' 'c' 'd' 'e' 'f';
 protected:
 Pixel **image;
+Pixel **image2;
 unsigned short sign;
 unsigned long largeur,hauteur;
 public: SNImage();

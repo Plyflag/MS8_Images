@@ -1,3 +1,4 @@
+
 #include "snimage.h"
 #include <iostream>
 #include <stdio.h>
@@ -308,4 +309,79 @@ void SNImage::Dessine7Segments(Coordonnee coord,int taille,int epaisseur,Pixel c
  coord.colonne+=2*(taille/2);
  coord.ligne=ligneDepart;
  }
+}
+
+void SNImage::Negatif()
+{
+    for(unsigned int i = 0; i < hauteur; i++)
+    {
+        for(unsigned int j = 0; j < largeur; j++)
+        {
+            image[i][j].bleu = 255 - image[i][j].bleu;
+            image[i][j].vert = 255 - image[i][j].vert;
+            image[i][j].rouge = 255 - image[i][j].rouge;
+        }
+    }
+}
+
+void SNImage::RetourneHorizontal()
+{
+    for(unsigned int i = 0; i < hauteur; i++)
+    {
+        for(unsigned int j = 0; j < largeur/2; j++)
+        {
+            Pixel t = image[i][j];
+            image[i][j] = image[i][largeur - 1 - j];
+            image[i][largeur-j] = t;
+        }
+    }
+
+}
+
+void SNImage::RetourneVertical()
+{
+    for(unsigned int i = 0; i < hauteur/2; i++)
+    {
+        for(unsigned int j = 0; j < largeur; j++)
+        {
+            Pixel t = image[i][j];
+            image[i][j] = image[hauteur - 1 - i][j];
+            image[hauteur-i][j] = t;
+        }
+    }
+
+}
+
+void SNImage::NiveauGris()
+{
+    for(unsigned int i = 0; i < hauteur; i++)
+    {
+        for(unsigned int j = 0; j < largeur; j++)
+        {
+           int ass;
+           ass = (image[i][j].bleu + image[i][j].vert + image[i][j].rouge);
+           image[i][j].bleu = ass / 3;
+           image[i][j].vert = ass / 3 ;
+           image[i][j].rouge = ass / 3;
+        }
+    }
+}
+
+void SNImage::Tourne90Droite()
+{
+    unsigned long temp;
+    for(unsigned int i = 0; i < hauteur; i++)
+    {
+        for (unsigned int j = 0; j < largeur; j++)
+        {
+            image2[j][hauteur - 1 - i] = image[i][j];
+
+            image = image2;
+            delete image;
+            temp = hauteur;
+            hauteur = largeur;
+            largeur = temp;
+
+        }
+    }
 }
