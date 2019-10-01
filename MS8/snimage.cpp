@@ -389,6 +389,22 @@ void SNImage::DessineDiagonale(){
     Pixel noir = {0, 0, 0};
     for (int i = 0; i < largeur; i++)
         image[i][i]=noir;
+/*
+ *     int x = (fin.colonne - debut.colonne) + 1;
+    int y = (fin.ligne - debut.ligne) + 1;
+
+    float step = x/y;
+    float stepD = debut.colonne + step;
+
+    for (int i = debut.colonne; i < fin.colonne + 1; i++)
+    {
+        for(int j = debut.ligne; j < stepD + 1; j++)
+        {   image[i][i] = couleur;
+            step++;
+        }
+    }
+}
+*/
 }
 
 void SNImage::DessineDiagonaleComplexe(Coordonnee debut,Coordonnee fin, int epaisseur, Pixel couleur) {
@@ -398,14 +414,12 @@ void SNImage::DessineDiagonaleComplexe(Coordonnee debut,Coordonnee fin, int epai
     float step = x/y;
     float stepD = debut.colonne + step;
 
-    for (int i = debut.ligne; i < fin.ligne + 1; i++)
+    for (int i = debut.colonne; i < fin.colonne + 1; i++)
     {
-        for(int j = 0; i < stepD; i++)
-           image[i][i] = couleur;
-           step +=  step;
-//           for (int i = 0; i < hauteur; i+step) {
-//                  image[i][i] = couleur;
-//                  step +=  step;
-       }
+        for(int j = debut.ligne; j < stepD + 1; j++)
+        {   image[i][int(step)] = couleur;
+            step++;
+        }
     }
 }
+
