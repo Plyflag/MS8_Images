@@ -375,13 +375,37 @@ void SNImage::Tourne90Droite()
         for (unsigned int j = 0; j < largeur; j++)
         {
             image2[j][hauteur - 1 - i] = image[i][j];
-
-            image = image2;
             delete image;
+            image = image2;
             temp = hauteur;
             hauteur = largeur;
             largeur = temp;
 
         }
+    }
+}
+
+void SNImage::DessineDiagonale(){
+    Pixel noir = {0, 0, 0};
+    for (int i = 0; i < largeur; i++)
+        image[i][i]=noir;
+}
+
+void SNImage::DessineDiagonaleComplexe(Coordonnee debut,Coordonnee fin, int epaisseur, Pixel couleur) {
+    int x = (fin.colonne - debut.colonne) + 1;
+    int y = (fin.ligne - debut.ligne) + 1;
+
+    float step = x/y;
+    float stepD = debut.colonne + step;
+
+    for (int i = debut.ligne; i < fin.ligne + 1; i++)
+    {
+        for(int j = 0; i < stepD; i++)
+           image[i][i] = couleur;
+           step +=  step;
+//           for (int i = 0; i < hauteur; i+step) {
+//                  image[i][i] = couleur;
+//                  step +=  step;
+       }
     }
 }

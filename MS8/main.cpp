@@ -18,11 +18,12 @@ int main(int argc, char *argv[])
     Pixel black = {0, 0, 0};
 //    monImage.Colorie(c, 60, 60, black);
 //    monImage.Detoure(0, 50, 100, 0, rouge);
-//    monImage.Negatif();
-    monImage.RetourneHorizontal();
-    monImage.RetourneVertical();
-    monImage.NiveauGris();
-    monImage.Tourne90Droite();
+    //    monImage.Negatif();
+        monImage.RetourneHorizontal();
+        monImage.RetourneVertical();
+        monImage.NiveauGris();
+   // monImage.Tourne90Droite();
+    monImage.DessineDiagonaleComplexe(2, 150, 3, black);
 
     monImage.Sauvegarde("testpower.bmp");
     WinExec("mspaint.exe testpower.bmp" , 1) ;

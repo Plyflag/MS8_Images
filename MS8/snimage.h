@@ -56,6 +56,8 @@ Coordonnee RechercheZone(int l,int h,Pixel couleur);
 void DessineCroix(Coordonnee coord,int taille,int epaisseur,Pixel couleur);
 void DessineCarre(Coordonnee coord,int taille,int epaisseur,Pixel couleur);
 void Dessine7Segments(Coordonnee coord,int taille,int epaisseur,Pixel couleur,string message);
+void DessineDiagonale();
+void DessineDiagonaleComplexe(Coordonnee debut,Coordonnee fin, int epaisseur, Pixel couleur);
 };
 
 #endif // SNIMAGE_H
