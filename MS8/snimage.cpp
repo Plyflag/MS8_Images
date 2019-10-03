@@ -2,6 +2,7 @@
 #include "snimage.h"
 #include <iostream>
 #include <stdio.h>
+#include <math.h>
 #include <fstream>
 using namespace std;
 
@@ -367,6 +368,29 @@ void SNImage::NiveauGris()
     }
 }
 
+void SNImage::SeuilleNoirBlanc(int niveau)
+{
+    for (int i = 0; i < hauteur; i++)
+    {
+        for (int j = 0; j < largeur; j++)
+        {
+            int a = (image[i][j].bleu + image[i][j].vert + image[i][j].rouge)/3;
+            if (a > niveau)
+            {
+                image[i][j].bleu = 255;
+                image[i][j].vert = 255;
+                image[i][j].rouge = 255;
+            }
+            else
+            {
+                image[i][j].bleu = 0;
+                image[i][j].rouge = 0;
+                image[i][j].bleu = 0;
+            }
+        }
+    }
+}
+
 void SNImage::Tourne90Droite()
 {
     unsigned long temp;
@@ -408,18 +432,30 @@ void SNImage::DessineDiagonale(){
 }
 
 void SNImage::DessineDiagonaleComplexe(Coordonnee debut,Coordonnee fin, int epaisseur, Pixel couleur) {
-    int x = (fin.colonne - debut.colonne) + 1;
-    int y = (fin.ligne - debut.ligne) + 1;
-
-    float step = x/y;
-    float stepD = debut.colonne + step;
-
-    for (int i = debut.colonne; i < fin.colonne + 1; i++)
+    int x = abs(debut.colonne - fin.colonne);
+    int y = abs(debut.ligne - fin.ligne);
+    float i = debut.ligne;
+    float step = (float)y/x;
+    for (int j = debut.colonne; j < fin.colonne ; j++)
     {
-        for(int j = debut.ligne; j < stepD + 1; j++)
-        {   image[i][int(step)] = couleur;
-            step++;
-        }
+       image[(int)i][j] = couleur;
+       i+=step;
     }
 }
 
+void SNImage::PixelToChar()
+{
+    Pixel color = {255, 255, 255};
+    SeuilleNoirBlanc(128);
+    for (int i = 0; i < hauteur; i+=2)
+    {
+        for (int j = 0; j < largeur; j++)
+        {
+
+            if (image[i][j].bleu != 255)
+                cout << "X";
+            else cout << " ";
+        }
+        cout << endl;
+    }
+}

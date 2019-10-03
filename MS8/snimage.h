@@ -58,6 +58,7 @@ void DessineCarre(Coordonnee coord,int taille,int epaisseur,Pixel couleur);
 void Dessine7Segments(Coordonnee coord,int taille,int epaisseur,Pixel couleur,string message);
 void DessineDiagonale();
 void DessineDiagonaleComplexe(Coordonnee debut,Coordonnee fin, int epaisseur, Pixel couleur);
+void PixelToChar();
 };
 
 #endif // SNIMAGE_H
