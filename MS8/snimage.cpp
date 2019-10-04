@@ -445,7 +445,6 @@ void SNImage::DessineDiagonaleComplexe(Coordonnee debut,Coordonnee fin, int epai
 
 void SNImage::PixelToChar()
 {
-    Pixel color = {255, 255, 255};
     SeuilleNoirBlanc(128);
     for (int i = 0; i < hauteur; i+=2)
     {
@@ -458,4 +457,37 @@ void SNImage::PixelToChar()
         }
         cout << endl;
     }
+}
+
+void SNImage::Histogramme()
+{
+    int histoRouge[256];
+    int histoVert[256];
+    int histoBleu[256];
+    int max;
+    SNImage histo;
+    Pixel col = {255, 0, 0};
+    for (int i = 0; i < hauteur; i++)
+    {
+        for (int j = 0; j < largeur; j++)
+        {
+            histoRouge[image[i][j].rouge]++;
+            histoVert[image[i][j].vert]++;
+            histoBleu[image[i][j].bleu]++;
+           // cout << histoRouge[image[i][j].rouge] << endl;
+        }                                                           //NE MARCHE PAS
+    }
+    for (int k = 0; k <= 255; k++)
+    {
+        if (histoRouge[k] > max)
+            max = histoRouge[k];
+    }
+    histo.Chargement("histoBlanc.bmp");
+    for (int i = 0; i < 255; i++)
+    {
+        Coordonnee depart = {0, i};
+        histo.Colorie(depart, 1, (histoRouge[i]/max)*100, col);
+    }
+ //   histo.RetourneVertical();
+    histo.Sauvegarde("histoRouge.bmp");
 }

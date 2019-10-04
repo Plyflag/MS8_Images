@@ -59,6 +59,7 @@ void Dessine7Segments(Coordonnee coord,int taille,int epaisseur,Pixel couleur,st
 void DessineDiagonale();
 void DessineDiagonaleComplexe(Coordonnee debut,Coordonnee fin, int epaisseur, Pixel couleur);
 void PixelToChar();
+void Histogramme();
 };
 
 #endif // SNIMAGE_H

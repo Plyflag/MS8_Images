@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
    // monImage.Tourne90Droite();
    // monImage.DessineDiagonaleComplexe(debut,fin,12,couleur);
     monImage.PixelToChar();
+    monImage.Histogramme();
 
     monImage.Sauvegarde("testkonoha.bmp");
     WinExec("mspaint.exe konoha.bmp" , 1) ;
